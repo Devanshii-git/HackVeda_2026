@@ -1,0 +1,34 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ---------- THEME TOKENS ---------- */
+
+/* LIGHT */
+:root {
+  --bg: 245 247 250;
+  --panel: 255 255 255;
+  --border: 226 232 240;
+  --text: 15 23 42;
+  --muted: 100 116 139;
+  --primary: 79 70 229;
+}
+
+/* DARK */
+.dark {
+  --bg: 2 6 23;
+  --panel: 15 23 42;
+  --border: 255 255 255 / 0.08;
+  --text: 226 232 240;
+  --muted: 148 163 184;
+  --primary: 99 102 241;
+}
+
+/* ---------- GLOBAL ---------- */
+
+body {
+  background-color: rgb(var(--bg));
+  color: rgb(var(--text));
+  font-family: Inter, system-ui, sans-serif;
+  font-size: 18px; 
+}
