@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { FcGoogle } from "react-icons/fc";
 
 export default function Welcome() {
   const [mouse, setMouse] = useState({ x: 0, y: 0 });
@@ -12,6 +13,12 @@ export default function Welcome() {
     window.addEventListener("mousemove", move);
     return () => window.removeEventListener("mousemove", move);
   }, []);
+
+  // 🔐 Google OAuth Redirect (Spring Boot Backend)
+  function handleGoogleLogin() {
+    window.location.href =
+      "http://localhost:8443/oauth2/authorization/google";
+  }
 
   return (
     <div className="relative min-h-screen overflow-hidden bg-[#05070f] text-white">
@@ -38,10 +45,11 @@ export default function Welcome() {
       {/* Content */}
       <div className="relative z-10 flex flex-col items-center justify-center min-h-screen text-center px-6">
 
-        <h1 className="text-6xl md:text-7xl font-extrabold tracking-tight
-        bg-gradient-to-r from-indigo-400 via-cyan-400 to-purple-400
-        bg-clip-text text-transparent drop-shadow-lg">
-
+        <h1
+          className="text-6xl md:text-7xl font-extrabold tracking-tight
+          bg-gradient-to-r from-indigo-400 via-cyan-400 to-purple-400
+          bg-clip-text text-transparent drop-shadow-lg"
+        >
           Financial Twin
         </h1>
 
@@ -51,18 +59,30 @@ export default function Welcome() {
         </p>
 
         {/* Buttons */}
-        <div className="mt-10 flex gap-6">
+        <div className="mt-10 flex flex-col sm:flex-row gap-6">
 
+          {/* Get Started */}
           <button
             onClick={() => navigate("/dashboard")}
             className="px-8 py-4 rounded-xl font-semibold
             bg-indigo-500 hover:bg-indigo-600
             shadow-lg hover:shadow-indigo-500/40
-            transition-all hover:scale-105">
-
+            transition-all hover:scale-105"
+          >
             Get Started
           </button>
 
+          {/* Google Login */}
+          <button
+            onClick={handleGoogleLogin}
+            className="flex items-center justify-center gap-3
+            px-8 py-4 rounded-xl font-semibold
+            bg-white text-black hover:bg-gray-200
+            shadow-lg transition-all hover:scale-105"
+          >
+            <FcGoogle size={22} />
+            Continue with Google
+          </button>
 
         </div>
 
